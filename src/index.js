@@ -1,15 +1,16 @@
-import express from 'express'
+import { app } from "./app.js";
+import { connectDB } from "./db/index.js";
+import dotenv from 'dotenv'
 
-const app = express();
-
-const PORT = process.env.PORT || 3002;
-
-app.get('/', (req, res) => {
-    res.send("server is ready");
+dotenv.config({
+    path:'./env'
 })
 
 
-app.listen(PORT, () => {
-    console.log(`server are running port no ${PORT}`)
+connectDB().then(()=>{
+    app.listen(process.env.PORT || 6000, ()=>{
+        console.log(`server running on port ${process.env.PORT}`)
+    })
+}).catch((error)=>{
+    console.log("monog db connection failed", error)
 })
-
