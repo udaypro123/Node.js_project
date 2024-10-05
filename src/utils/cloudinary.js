@@ -9,7 +9,7 @@ cloudinary.config({
 
 
 
-const getUploadFilesCloudinary=async (lacalFilePath)=>{
+const uploadOnCloudinary=async (lacalFilePath)=>{
 
     try {
 
@@ -17,7 +17,8 @@ const getUploadFilesCloudinary=async (lacalFilePath)=>{
             resource_type:"auto"
         })
 
-        console.log("file uplaoded succesfully", resposne)
+        // console.log("file uplaoded succesfully", resposne)
+        fs.unlinkSync(lacalFilePath);
         return resposne;
         
     } catch (error) {
@@ -27,7 +28,7 @@ const getUploadFilesCloudinary=async (lacalFilePath)=>{
 
 }
 
-export {getUploadFilesCloudinary}
+export {uploadOnCloudinary}
 
 
 // (async function() {
